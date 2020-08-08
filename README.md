@@ -21,6 +21,8 @@ Gofのデザインパターン23個を学んでいくよ
 ├── 2-Adapter  
 ├── 20-Flyweight  
 ├── 21-Proxy  
+├── 22-Command  
+├── 23-Interpreter  
 ├── 3-TemplateMethod  
 ├── 4-FactoryMethod  
 ├── 5-Singleton  

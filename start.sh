@@ -1,3 +1,4 @@
+# makedir
 mkdir 1-Iterator
 mkdir 2-Adapter
 mkdir 3-TemplateMethod
@@ -8,7 +9,7 @@ mkdir 7-Builder
 mkdir 8-AbstractFactory
 mkdir 9-Bridge
 mkdir 10-Strategy
-mkdir 11-Compsite
+mkdir 11-Composite
 mkdir 12-Decorator
 mkdir 13-Visitor
 mkdir 14-ChainOfResponsibility
@@ -16,6 +17,33 @@ mkdir 15-Facade
 mkdir 16-Mediator
 mkdir 17-Observer
 mkdir 18-Memento
-mkdir 19-Strate 
+mkdir 19-State 
 mkdir 20-Flyweight
 mkdir 21-Proxy
+mkdir 22-Command 
+mkdir 23-Interpreter
+
+# make .gitkeep
+touch 1-Iterator/.gitkeep
+touch 2-Adapter/.gitkeep
+touch 3-TemplateMethod/.gitkeep
+touch 4-FactoryMethod/.gitkeep
+touch 5-Singleton/.gitkeep
+touch 6-Prototype/.gitkeep
+touch 7-Builder/.gitkeep
+touch 8-AbstractFactory/.gitkeep
+touch 9-Bridge/.gitkeep
+touch 10-Strategy/.gitkeep
+touch 11-Composite/.gitkeep
+touch 12-Decorator/.gitkeep
+touch 13-Visitor/.gitkeep
+touch 14-ChainOfResponsibility/.gitkeep
+touch 15-Facade/.gitkeep
+touch 16-Mediator/.gitkeep
+touch 17-Observer/.gitkeep
+touch 18-Memento/.gitkeep
+touch 19-State/.gitkeep
+touch 20-Flyweight/.gitkeep
+touch 21-Proxy/.gitkeep
+touch 22-Command/.gitkeep
+touch 23-Interpreter/.gitkeep
