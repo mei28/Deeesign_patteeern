@@ -1,0 +1,14 @@
+inherit_from:
+  - .rubocop_todo.yml
+
+# 日本語のコメントを許可する
+AsciiComments:
+    Enabled: false
+
+# 空メソッドを許可する
+Style/EmptyMethod:
+    Enabled: false
+
+# 文字列をfreezeする(immutableにする)
+Style/FrozenStringLiteralComment:
+    Enabled: false
