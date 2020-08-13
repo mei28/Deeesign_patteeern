@@ -1,15 +1,15 @@
-require './old_unit'
+require "./old_unit"
 
 # newでoldのメゾットを使うための変換アダプタ(Adapter)
-class Adapter 
-  def initialize(new_unit)
-    @old_unit = OldUnit.new(new_unit.metere / 0.0303,
-                            new_unit.kiro_gram / 3.75,
-                            new_unit.square_metre / 3.3,
-                            new_unit.milli_liter / 180.0)
+class Adapter
+  def initialize(sun, kan, tubo, gou)
+    @old_unit = OldUnit.new(sun, kan, tubo, gou)
   end
 
   def show
-    @old_unit.show_unit
+    puts "#{@old_unit.sun / 33.0}m"
+    puts "#{@old_unit.kan * 3.75}Kg"
+    puts "#{@old_unit.tubo * 3.30579}m^2"
+    puts "#{@old_unit.gou * 180.39}mL"
   end
 end

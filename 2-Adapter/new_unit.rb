@@ -1,19 +1,10 @@
-# mainで使われるメゾットを持つ(Target)
+# mainで使われるメゾットを持つインターフェイス(Target)
 class NewUnit
-  # def metere; @metere; endみたいにインスタンス変数を外部で参照できるようになる。
-  attr_reader :metere, :kiro_gram, :square_metre, :milli_liter
-
-  def initialize(metere, kiro_gram, square_metre, milli_liter)
-    @metere = metere
-    @kiro_gram = kiro_gram
-    @square_metre = square_metre
-    @milli_liter = milli_liter
+  def initialize(adapter_object)
+    @adapter = adapter_object
   end
 
-  def show_unit
-    puts "#{@metere}m"
-    puts "#{@kiro_gram}Kg"
-    puts "#{@square_metre}m^2"
-    puts "#{@milli_liter}mL"
+  def show
+    @adapter.show
   end
 end
