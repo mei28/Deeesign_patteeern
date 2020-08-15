@@ -1,0 +1,52 @@
+@startuml Stateパターン
+
+package Stateパターン <<Rectangle>> {
+    class GreetingMan {
+        - State curr_state
+        + void set_state(State next_state)
+        + void request_wake_up()
+        + void request_lets_eat()
+        + void request_hello()
+        + void request_finish()
+        + void request_goto_bed()
+    }
+
+    abstract class State {
+        + {abstract} void wake_up()
+        + {abstract} void eat()
+        + {abstract} void say_hello()
+        + {abstract} void finish()
+        + {abstract} void goto_bed()
+    }
+
+    class SleepingState {
+        + void wake_up()
+        + void eat()
+        + void say_hello()
+        + void finish()
+        + void goto_bed()
+    }
+
+    class WorkingState {
+        + void wake_up()
+        + void eat()
+        + void say_hello()
+        + void finish()
+        + void goto_bed()
+    }
+
+    class EatingState {
+        + void wake_up()
+        + void eat()
+        + void say_hello()
+        + void finish()
+        + void goto_bed()
+    }
+}
+
+GreetingMan *- State : call >
+State <|-- SleepingState : extends
+State <|-- WorkingState : extends
+State <|-- EatingState : extends
+
+@enduml
