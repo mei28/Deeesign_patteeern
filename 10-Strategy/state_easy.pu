@@ -1,0 +1,25 @@
+@startuml Stateパターン
+
+package Stateパターン <<Rectangle>> {
+    class GreetingMan {
+    }
+
+    abstract class State {
+    }
+
+    class SleepingState {
+    }
+
+    class WorkingState {
+    }
+
+    class EatingState {
+    }
+}
+
+GreetingMan *- State : call >
+State <|-- SleepingState : extends
+State <|-- WorkingState : extends
+State <|-- EatingState : extends
+
+@enduml

@@ -1,0 +1,25 @@
+@startuml Strategyパターン
+
+package Strategyパターン <<Rectangle>> {
+    class Report {
+    }
+
+    abstract class Formatter {
+    }
+
+    class HTMLFormatter {
+    }
+
+    class PlainTextFormatter {
+    }
+
+    class JsonFormatter {
+    }
+}
+
+Report *- Formatter : call >
+Formatter <|-- HTMLFormatter : extends
+Formatter <|-- PlainTextFormatter : extends
+Formatter <|-- JsonFormatter : extends
+
+@enduml
