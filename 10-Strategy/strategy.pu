@@ -18,10 +18,15 @@ package Strategyパターン <<Rectangle>> {
     class PlainTextFormatter {
         + void do_format(String title, String body)
     }
+
+    class JsonFormatter {
+        + void do_format(String title, String body)
+    }
 }
 
 Report *- Formatter : call >
 Formatter <|-- HTMLFormatter : extends
 Formatter <|-- PlainTextFormatter : extends
+Formatter <|-- JsonFormatter : extends
 
 @enduml

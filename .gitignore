@@ -353,3 +353,6 @@ MigrationBackup/
 .ionide/
 
 Changed/
+
+# PlantUMLによる生成物を無視
+out/
