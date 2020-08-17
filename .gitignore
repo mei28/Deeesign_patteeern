@@ -355,4 +355,5 @@ MigrationBackup/
 Changed/
 
 # PlantUMLによる生成物を無視
-out/
+out/*
+10-Strategy/景色.jpg
