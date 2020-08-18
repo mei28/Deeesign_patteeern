@@ -24,15 +24,17 @@ class MyImg():
         "mosaic": MosaicPrinter()
     }
 
-    def __init__(self, printer_id: str):
+    def __init__(self, img_path: str, printer_id: str = "rgb"):
         """
         Parameters
         ----------
+        img_path : str
+            画像ファイルのパス
         printer_id : str
             表示方法を決めるための識別子
             "rgb" or "gray" or "mosaic"
         """
-        self.SRC_PATH = "景色.jpg"
+        self.SRC_PATH = img_path
         self.set_printer(printer_id)
         self.img = cv2.imread(self.SRC_PATH)
         # グレー画像を表示するために必要
