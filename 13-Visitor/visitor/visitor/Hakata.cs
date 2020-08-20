@@ -4,6 +4,7 @@ using System.Text;
 
 namespace visitor
 {
+    // 博多クラス
     class Hakata : Site
     {
         public override void Accept(IVisitor visitor)

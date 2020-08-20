@@ -4,6 +4,7 @@ using System.Text;
 
 namespace visitor
 {
+    // 東京クラス
     class Tokyo : Site
     {
         public override void Accept(IVisitor visitor)

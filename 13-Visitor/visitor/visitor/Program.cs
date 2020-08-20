@@ -6,11 +6,13 @@ namespace visitor
     {
         static void Main(string[] args)
         {
+            // Acceptorクラスのインスタンス
             Tokyo tokyo = new Tokyo();
             Kyoto kyoto = new Kyoto();
             Hakata hakata = new Hakata();
             Hokkaido hokkaido = new Hokkaido();
             
+            // Visitorクラスのインスタンス
             Student student = new Student();
             Silver silver = new Silver();
 
