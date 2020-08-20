@@ -6,6 +6,7 @@ namespace visitor
 {
     interface IVisitor
     {
+        // Acceptorクラスの数だけ、Visitorクラスが必ずVisitメソッドを持つように
         void visit(Tokyo tokyo);
         void visit(Kyoto kyoto);
         void visit(Hakata hakata);
