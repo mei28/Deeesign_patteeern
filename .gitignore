@@ -353,3 +353,8 @@ MigrationBackup/
 .ionide/
 
 Changed/
+
+# PlantUMLによる生成物を無視
+out/*
+10-Strategy/景色.jpg
+10-Strategy/夜景.jpg

@@ -1,0 +1,68 @@
+@startuml my_img
+
+package Strategyパターン <<Rectangle>> {
+    class MyImg {
+        + self.printer: str
+        + show_img(self) -> None
+        + show_square(self) -> None
+        + set_printer(self, printer_id: str) -> None
+        - __show(self, converted_img: np.ndarray) -> None
+    }
+
+    abstract class ImgProc {
+        + {abstract} convert_full(self, img: np.ndarray) -> np.ndarray
+        + {abstract} convert_square(self, img: np.ndarray) -> np.ndarray
+        + trim(self, img: np.ndarray) -> np.ndarray
+    }
+
+    class RgbPrinter {
+        + convert_full(self, img: np.ndarray) -> np.ndarray
+        + convert_square(self, img: np.ndarray) -> np.ndarray
+        - __bgr2rgb(self, img: np.ndarray) -> np.ndarray
+    }
+
+    class GrayPrinter {
+        + convert_full(self, img: np.ndarray) -> np.ndarray
+        + convert_square(self, img: np.ndarray) -> np.ndarray
+        - __bgr2gray(self, img: np.ndarray) -> np.ndarray
+    }
+
+    class MosaicPrinter {
+        + convert_full(self, img: np.ndarray) -> np.ndarray
+        + convert_square(self, img: np.ndarray) -> np.ndarray
+        - __mosaic(self, img: np.ndarray) -> np.ndarray
+    }
+}
+
+MyImg *- ImgProc : call >
+ImgProc <|-- RgbPrinter : extends
+ImgProc <|-- GrayPrinter : extends
+ImgProc <|-- MosaicPrinter : extends
+
+@enduml
+
+@startuml my_img_easy
+
+package Strategyパターン <<Rectangle>> {
+    class MyImg {
+    }
+
+    abstract class ImgProc {
+    }
+
+    class RgbPrinter {
+    }
+
+    class GrayPrinter {
+    }
+
+    class MosaicPrinter {
+    }
+}
+
+MyImg *- ImgProc : call >
+ImgProc <|-- RgbPrinter : extends
+ImgProc <|-- GrayPrinter : extends
+ImgProc <|-- MosaicPrinter : extends
+
+@enduml
