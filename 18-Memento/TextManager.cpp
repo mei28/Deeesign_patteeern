@@ -54,7 +54,7 @@ void TextManager::undo(Memento *memento)
     // 
     textPool = memento->_text;
     redoFlag = true;
-    cout << "Undoをしたよ" << endl;
+    cout << "時を戻そう" << endl;
 }
 
 void TextManager::redo()
