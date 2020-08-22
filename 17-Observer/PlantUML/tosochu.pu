@@ -1,0 +1,30 @@
+@startuml Observerパターン
+
+abstract class Observer {
+    # string _name
+    # Subject _observable
+    + {abstract} Report()
+    + {abstract} Update()
+}
+
+class Subject {
+    # List<Observer> observers
+    + NotifyObservers()
+}
+
+class GameMaster {
+}
+
+class Runner {
+    + Report()
+    + Update()
+    + CaughtByHunter()
+}
+
+Observer <|.. Runner : 実装する
+Subject <|.. GameMaster : 実装する
+
+Subject "1" *- "1..*" Observer : 全員に誰かが捕まった旨を通知する >
+Observer *- Subject : 捕まった報告をする >
+
+@enduml
