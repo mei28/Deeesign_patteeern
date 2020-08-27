@@ -18,8 +18,10 @@ namespace Flyweight
             Console.WriteLine(this.type);
         }
 
+        // 生成済みインスタンスの一覧
         static Dictionary<char, Stamp> cache = new Dictionary<char, Stamp>();
 
+        //　インスタンス生成のためのメソッド
         public static Stamp Get(char type)
         {
             if (!cache.ContainsKey(type))

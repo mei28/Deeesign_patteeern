@@ -6,8 +6,6 @@ namespace Flyweight
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-
             var a = Stamp.Get('a');
             var a2 = Stamp.Get('a');
             var b = Stamp.Get('b');
