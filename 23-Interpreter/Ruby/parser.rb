@@ -1,27 +1,27 @@
 require './token'
-require './ast'
+require './node'
 
 # 構文解析器
 class Parser
-  def run(tokens)
+  # @param [TokenSequence] tokens トークン列
+  # @return [Node] 解析後の抽象構文木
+  def parse(tokens)
     @tokens = tokens
-    # 根が加減表現で，根から再帰的に構文解析をするから
-    ast = expr_add
-    ast
+    parse_add
   end
 
   # 加減表現を解析する
   # @param [Nil]
-  # @return [Ast] 解析後の抽象構文木
-  def expr_add
-    left = expr_mul
+  # @return [Node] 解析後の抽象構文木
+  def parse_add
+    left = parse_mul
     loop do
       if @tokens.value_is?('+')
         @tokens.step
-        left = Binary.new('+', left, expr_mul)
+        left = AddNode.new(left, parse_mul)
       elsif @tokens.value_is?('-')
         @tokens.step
-        left = Binary.new('-', left, expr_mul)
+        left = SubNode.new(left, parse_mul)
       else
         return left
       end
@@ -30,16 +30,16 @@ class Parser
 
   # 乗除表現を解析する
   # @param [Nil]
-  # @return [Ast] 解析後の抽象構文木
-  def expr_mul
-    left = expr_primary
+  # @return [Node] 解析後の抽象構文木
+  def parse_mul
+    left = parse_primary
     loop do
       if @tokens.value_is?('*')
         @tokens.step
-        left = Binary.new('*', left, expr_mul)
+        left = MulNode.new(left, parse_mul)
       elsif @tokens.value_is?('/')
         @tokens.step
-        left = Binary.new('/', left, expr_mul)
+        left = DivNode.new(left, parse_mul)
       else
         return left
       end
@@ -48,14 +48,14 @@ class Parser
 
   # その他の表現を解析する
   # @param [Nil]
-  # @return [Ast] 解析後の抽象構文木
-  def expr_primary
+  # @return [Node] 解析後の抽象構文木
+  def parse_primary
     loop do
       if @tokens.type_is?(TOKENKIND::NUMBER)
-        return expr_num(@tokens.step_with_getting)
+        return parse_num(@tokens.step_with_getting)
       elsif @tokens.value_is?('(')
         @tokens.step
-        left = expr_add
+        left = parse_add
         @tokens.skip_close_blacket
         return left
       else
@@ -65,10 +65,10 @@ class Parser
     end
   end
 
-  # 数値表現を解析する
-  # @param [Nil]
-  # @return [Ast] 解析後の抽象構文木
-  def expr_num(token)
-    Number.new(token.value)
+  # 数値を解析する
+  # @param [Token] トークン
+  # @return [Node] 解析後の抽象構文木
+  def parse_num(token)
+    NumNode.new(token.value)
   end
 end

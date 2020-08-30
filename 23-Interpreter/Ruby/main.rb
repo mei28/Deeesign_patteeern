@@ -1,6 +1,5 @@
 require './lexer'
 require './parser'
-require './vm'
 
 # コマンドライン引数から計算式を受け取る
 if ARGV.empty?
@@ -18,14 +17,11 @@ puts ''
 
 # 構文解析をする
 parser = Parser.new
-ast = parser.run(tokens)
+ast = parser.parse(tokens)
 puts '== 構文解析の結果 =='
-ast.show
-puts ''
+puts ast.to_str
 puts ''
 
-# 解析したコードを仮想マシンで実行する
-vm = Vm.new
-calc_result = vm.run(ast)
-puts '== 仮想マシンによる計算の結果 =='
-puts calc_result
+# 抽象構文木の評価
+puts '== 評価の結果 =='
+puts ast.evaluate
