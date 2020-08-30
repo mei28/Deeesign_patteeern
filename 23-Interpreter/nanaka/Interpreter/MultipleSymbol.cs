@@ -8,15 +8,11 @@ namespace Interpreter
 {
     public class MultipleSymbol : Symbol
     {
-        /// <summary>
-        /// 1 * 1 * 2 * 3
-        /// </summary>
-        /// <param name="context"></param>
-        /// <returns></returns>
         public override int Perse(IEnumerable<string> context)
         {
             Queue<string> contextQueue = new Queue<string>(context);
 
+            // * or / の左側の数字をintに変換
             var leftNum = new NumberSymbol();
             var res = leftNum.Perse(new List<string>() { contextQueue.Dequeue() });
 
@@ -24,6 +20,7 @@ namespace Interpreter
             {
                 switch (contextQueue.Dequeue())
                 {
+                    // 右側の数字をintに変換し、左側の数字と乗除計算
                     case "*":
                         var rightNum = new NumberSymbol();
                         res *= rightNum.Perse(new List<string>() { contextQueue.Dequeue() });
@@ -32,6 +29,7 @@ namespace Interpreter
                         var rightNum2 = new NumberSymbol();
                         res /= rightNum2.Perse(new List<string>() { contextQueue.Dequeue() });
                         break;
+                    // * or / 以外であればExceptonを投げる
                     default:
                         throw new InvalidOperationException("MultipleSymbol");
                 }

@@ -9,6 +9,7 @@ namespace Interpreter
     {
         public override int Perse(IEnumerable<string> context)
         {
+            // stringの数字1つをintに変換する
             if (context.Count() != 1)
                 throw new InvalidOperationException("NumberSymbol");
             return Convert.ToInt32(context.First());
