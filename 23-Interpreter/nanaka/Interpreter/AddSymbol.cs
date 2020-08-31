@@ -7,7 +7,7 @@ namespace Interpreter
 {
     public class AddSymbol : Symbol
     {
-        public override int Perse(IEnumerable<string> context)
+        public override int Parse(IEnumerable<string> context)
         {
             Queue<string> contextQueue = new Queue<string>(context);
             // 式の終わりを示すやつ
@@ -48,12 +48,12 @@ namespace Interpreter
                         case "-":
                         // 足し合わせのところでデキューするのでここではreturnするだけ
                             var symbol = new MultipleSymbol();
-                            return symbol.Perse(queue);
+                            return symbol.Parse(queue);
                         // キューが空になるので繰り返し終了
                         case "\\":
                             contextQueue.Dequeue();
                             var symbol2 = new MultipleSymbol();
-                            return symbol2.Perse(queue);
+                            return symbol2.Parse(queue);
                         default:
                             contextQueue.Dequeue();
                             queue.Enqueue(word);

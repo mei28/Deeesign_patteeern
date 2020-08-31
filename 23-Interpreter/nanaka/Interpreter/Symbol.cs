@@ -6,7 +6,7 @@ namespace Interpreter
 {
     public abstract class Symbol
     {
-        public virtual int Perse(IEnumerable<string> context)
+        public virtual int Parse(IEnumerable<string> context)
         {
             throw new NotImplementedException();
         }

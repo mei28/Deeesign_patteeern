@@ -7,7 +7,7 @@ namespace Interpreter
 {
     public class NumberSymbol : Symbol
     {
-        public override int Perse(IEnumerable<string> context)
+        public override int Parse(IEnumerable<string> context)
         {
             // stringの数字1つをintに変換する
             if (context.Count() != 1)
