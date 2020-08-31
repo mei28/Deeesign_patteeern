@@ -1,0 +1,11 @@
+1 A
+2 AA
+3 AAAB
+
+
+1 A
+2 A
+  AA 
+3 A
+  AA
+  AAAB
