@@ -1,44 +1,67 @@
+use clap::Clap;
 use core::borrow::Borrow;
+use std::fs::File;
 use std::io::{self, Write};
+use std::io::{BufRead, BufReader};
 use std::mem;
-
 fn main() {
-    loop {
-        print!(">> ");
-        io::stdout().flush().unwrap();
+    let opts = Opts::parse();
 
-        let mut code = String::new();
-        io::stdin()
-            .read_line(&mut code)
-            .ok()
-            .expect("failed to read line");
+    if let Some(path) = opts.formula_file {
+        let f = File::open(path).unwrap();
+        let reader = BufReader::new(f);
+        run_file(reader);
+    } else {
+        loop {
+            print!(">> ");
+            io::stdout().flush().unwrap();
 
-        if code == "exit\n" {
-            break;
-        }
+            let mut code = String::new();
+            io::stdin()
+                .read_line(&mut code)
+                .ok()
+                .expect("failed to read line");
 
-        let lexer = Lexer::new(code.chars().collect());
-        let mut parser = Parser::new(lexer);
+            if code == "exit\n" {
+                break;
+            }
 
-        let expr = parser.parse();
+            let lexer = Lexer::new(code.chars().collect());
+            let mut parser = Parser::new(lexer);
 
-        if let Some(expr) = expr {
-            println!("{}", eval(expr.borrow()));
+            let expr = parser.parse();
+
+            if let Some(expr) = expr {
+                println!("{}", eval(expr.borrow()));
+            }
         }
     }
 }
 
+#[derive(Clap, Debug)]
+#[clap(
+    name = "Calculator",
+    version = "1.0.0",
+    author = "mei",
+    about = "implement for studying Design Pattern."
+)]
+
+struct Opts {
+    // ファイル読み込みで行いたいとき
+    #[clap(name = "FILE")]
+    formula_file: Option<String>,
+}
 #[derive(Debug, PartialEq, Clone)]
+//字句解析に使うときのtoken
 enum Token {
     Number(f64),
-    ADD,
-    SUB,
-    MUL,
-    DIV,
-    MOD,
-    LParen,
-    RParen,
-    
+    ADD,    // +
+    SUB,    // -
+    MUL,    // *
+    DIV,    // /
+    MOD,    // %
+    LParen, // (
+    RParen, // )
 }
 
 struct Lexer {
@@ -106,7 +129,25 @@ impl Lexer {
         c.is_ascii_digit() || c == &'.'
     }
 }
+// 字句解析，構文解析を行う
+fn run(code: &str) {
+    let lexer = Lexer::new(code.chars().collect());
+    let mut parser = Parser::new(lexer);
 
+    let expr = parser.parse();
+
+    if let Some(expr) = expr {
+        println!("{}", eval(expr.borrow()));
+    }
+}
+// ファイルを読み込んだとき
+fn run_file(reader: BufReader<File>) {
+    for line in reader.lines() {
+        let line = line.unwrap();
+        println!(">> {}", line);
+        run(&line);
+    }
+}
 #[test]
 fn test_lexer() {
     let mut lexer = Lexer::new("1 + 2".chars().collect());
@@ -138,6 +179,7 @@ enum Expr {
 }
 
 #[derive(PartialOrd, PartialEq)]
+//　演算の優先度
 enum Precedence {
     LOWEST,
     SUM,
@@ -252,14 +294,17 @@ impl Parser {
     }
 }
 
+// テスト
 #[test]
 fn test_parser() {
     do_parser(
         "1 + 2",
         r#"Some(InfixExpr { left: Number(1.0), operator: "ADD", right: Number(2.0) })"#,
     );
-    do_parser("- 1 + 2 * 3",
-             r#"Some(InfixExpr { left: PrefixExpr { operator: "SUB", right: Number(1.0) }, operator: "ADD", right: InfixExpr { left: Number(2.0), operator: "MUL", right: Number(3.0) } })"#);
+    do_parser(
+        "- 1 + 2 * 3",
+        r#"Some(InfixExpr { left: PrefixExpr { operator: "SUB", right: Number(1.0) }, operator: "ADD", right: InfixExpr { left: Number(2.0), operator: "MUL", right: Number(3.0) } })"#,
+    );
 }
 
 #[cfg(test)]
