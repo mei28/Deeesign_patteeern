@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "prototype", "6-prototype\pr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "visitor", "13-Visitor\visitor\visitor\visitor.csproj", "{26D0CE52-7E4A-41EC-96AC-98899476C201}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flyweight", "20-Flyweight\Flyweight\Flyweight.csproj", "{D0E0A39B-053D-4CEF-BA4A-1A5C11A01DBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flyweight", "20-Flyweight\Flyweight\Flyweight.csproj", "{D0E0A39B-053D-4CEF-BA4A-1A5C11A01DBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interpreter", "23-Interpreter\nanaka\Interpreter\Interpreter.csproj", "{7313BED1-6BB8-42CF-A43B-331EA66AB39F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{D0E0A39B-053D-4CEF-BA4A-1A5C11A01DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0E0A39B-053D-4CEF-BA4A-1A5C11A01DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0E0A39B-053D-4CEF-BA4A-1A5C11A01DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7313BED1-6BB8-42CF-A43B-331EA66AB39F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7313BED1-6BB8-42CF-A43B-331EA66AB39F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7313BED1-6BB8-42CF-A43B-331EA66AB39F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7313BED1-6BB8-42CF-A43B-331EA66AB39F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
