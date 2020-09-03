@@ -1,5 +1,5 @@
 export default class Receiver {
-    action(number: number): number {
-      return number * number;
+    action(number: number): void {
+    console.log(number);
     }
   }

@@ -1,4 +1,4 @@
-// コマンドの実装
+// コマンドの実装２つ目
 import Command from "./Command";
 import Receiver from "./Receiver";
 
@@ -15,6 +15,6 @@ export default class ConcreteCommand implements Command {
   }
 
   execute(): void {
-    this.receiver.action(this.number * this.number);
+    this.receiver.action(this.number+this.number);
   }
 }
